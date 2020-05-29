@@ -154,17 +154,14 @@
           self.scrollTo($(this));
         });
 
-        $("#main").on(
-          "click.toggleDtoc",
-          ".d-toc-toggle, .d-toc-close",
+        $("#main").on("click.toggleDtoc",".d-toc-toggle, .d-toc-close",
           dtocMobile
         );
         
-        $("#main").on(
-          ".d-toc-toggle, .d-toc-close",
+        $("#main").on("click",".d-toc-toggle, .d-toc-close", function() {
           $("#d-toc").toggleClass("d-toc-toggle-click")
-        );
-
+        });
+        
         const onScroll = () => {
           run.throttle(this, self.highlightItemsOnScroll, self, SCROLL_THROTTLE);
         };
