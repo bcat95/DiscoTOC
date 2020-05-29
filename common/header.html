@@ -43,9 +43,12 @@
   };
 
   const setUpTocItem = function(item) {
-    const unique = item.attr("id");
+  
+    if (Discourse.SiteSettings.slug_generation_method === "encoded") const unique = encodeURI(item.attr("id"));
+    else const unique = item.attr("id");
+    
     const text = item.text();
-
+    
     const tocItem = $("<li/>", {
       class: "d-toc-item",
       "data-d-toc": unique
@@ -295,6 +298,8 @@
         const heading = $(this);
 
         let id = heading.attr("id") || "";
+        
+        if (Discourse.SiteSettings.slug_generation_method === "encoded") const id = encodeURI(id);
 
         if (!id.length) {
           id = cleanUp(heading.text());
