@@ -44,8 +44,8 @@
 
   const setUpTocItem = function(item) {
   
-    if (Discourse.SiteSettings.slug_generation_method === "encoded") const unique = encodeURI(item.attr("id"));
-    else const unique = item.attr("id");
+    let unique = item.attr("id");
+    if (Discourse.SiteSettings.slug_generation_method === "encoded") unique = encodeURI(unique);
     
     const text = item.text();
     
@@ -298,8 +298,7 @@
         const heading = $(this);
 
         let id = heading.attr("id") || "";
-        
-        if (Discourse.SiteSettings.slug_generation_method === "encoded") const id = encodeURI(id);
+        if (Discourse.SiteSettings.slug_generation_method === "encoded") id = encodeURI(id);
 
         if (!id.length) {
           id = cleanUp(heading.text());
