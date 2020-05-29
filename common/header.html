@@ -302,12 +302,11 @@
         const heading = $(this);
 
         let id = heading.attr("id") || "";
-        id = urlUtf8(id);
-
         if (!id.length) {
           id = cleanUp(heading.text());
         }
-
+        id = urlUtf8(id);
+        
         heading
           .attr({
             id: id,
