@@ -233,6 +233,7 @@
       max-width: 500px;
       overflow: scroll;
       transition: transform 0.5s, opacity 0.25s;
+      margin: 5px 0 10px 0;
       :not(.rtl) & {
         margin-left: -1px;
       }
