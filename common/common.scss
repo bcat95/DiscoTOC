@@ -233,6 +233,7 @@
       max-width: 500px;
       overflow: scroll;
       transition: transform 0.5s, opacity 0.25s;
+      transform: translatex(0);
       margin: 5px 0 10px 0;
       :not(.rtl) & {
         margin-left: -1px;
@@ -240,14 +241,13 @@
       .rtl & {
         margin-right: -1px;
       }
-      &.d-toc-toggle-click {
+      &.d-toc-toggle-click:not(.d-toc-mobile) {
         z-index: z("header") + 1;
         position: fixed;
         right: 0;
         top: 0;
         height: 100vh;
         transform: translatex(100%);
-        transform: translatex(0);
         opacity: 1;
       }
       .d-toc-active {
