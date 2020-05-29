@@ -1,5 +1,4 @@
-<script type="text/discourse-plugin"
-        version="0.1">
+<script type="text/discourse-plugin" version="0.1">
   const minimumOffset = require("discourse/lib/offset-calculator").minimumOffset;
   const { iconHTML } = require("discourse-common/lib/icon-library");
   const { run } = Ember;
@@ -41,11 +40,16 @@
 
     return link;
   };
+  
+  const urlUtf8 = function(url) {
+    url=url.replace('.','').replace(';','').replace(',','').replace('?','');
+    return url.toLowerCase().replace(/( )/mg,'-').replace(/(á|à|ả|ã|ạ|â|ấ|ầ|ẩ|ẫ|ậ|ă|ắ|ằ|ẳ|ẵ|ặ)/mg,'a').replace(/(é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ)/mg,'e').replace(/(ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự)/mg,'u').replace(/(ý|ỳ|ỷ|ỹ|ỵ)/mg,'y').replace(/(í|ì|ỉ|ĩ|ị)/mg,'i').replace(/(ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|Ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ)/mg,'o').replace(/(á|à|ả|ã|ạ|â|ấ|ầ|ẩ|ẫ|ậ|ă|ắ|ằ|ẳ|ẵ|ặ)/mg,'a').replace(/(é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ)/mg,'e').replace(/(ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự)/mg,'u').replace(/(ý|ỳ|ỷ|ỹ|ỵ)/mg,'y').replace(/(í|ì|ỉ|ĩ|ị)/mg,'i').replace(/(ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ)/mg,'o').replace(/(á|à|ả|ã|ạ)/mg,'a').replace(/(é|è|ẻ|ẽ|ẹ)/mg,'e').replace(/(ú|ù|ủ|ũ|ụ)/mg,'u').replace(/(ý|ỳ|ỷ|ỹ|ỵ)/mg,'y').replace(/(í|ì|ỉ|ĩ|ị)/mg,'i').replace(/(ó|ò|ỏ|õ|ọ)/mg,'o').replace(/(đ)/mg,'d')
+  }
 
   const setUpTocItem = function(item) {
   
     let unique = item.attr("id");
-    if (Discourse.SiteSettings.slug_generation_method === "encoded") unique = encodeURI(unique);
+    unique = urlUtf8(unique);
     
     const text = item.text();
     
@@ -298,7 +302,7 @@
         const heading = $(this);
 
         let id = heading.attr("id") || "";
-        if (Discourse.SiteSettings.slug_generation_method === "encoded") id = encodeURI(id);
+        id = urlUtf8(id);
 
         if (!id.length) {
           id = cleanUp(heading.text());
