@@ -159,6 +159,11 @@
           ".d-toc-toggle, .d-toc-close",
           dtocMobile
         );
+        
+        $("#main").on(
+          ".d-toc-toggle",
+          $("#d-toc").toggleClass("d-toc-toggle-click")
+        );
 
         const onScroll = () => {
           run.throttle(this, self.highlightItemsOnScroll, self, SCROLL_THROTTLE);
