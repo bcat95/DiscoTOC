@@ -240,7 +240,7 @@
       .rtl & {
         margin-right: -1px;
       }
-      &.d-toc-mobile.d-toc-toggle-click {
+      &.d-toc-toggle-click {
         z-index: z("header") + 1;
         position: fixed;
         right: 0;
@@ -260,8 +260,10 @@
           }
         }
       }
-      .d-toc-close-wrapper {
-        display: none;
+      &:not(".d-toc-toggle-click"){
+        .d-toc-close-wrapper {
+          display: none;
+        }
       }
     }
     .d-toc-close-wrapper {
@@ -301,7 +303,7 @@
         bottom: 49px;
       }
     }
-    #d-toc:not(.d-toc-toggle-click) > ul {
+    #d-toc:has(.d-toc-toggle-click) > ul {
       :not(.rtl) & {
         margin-left: 20px;
         border-left: 1px solid $primary-low;
